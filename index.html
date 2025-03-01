@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nostr Widget</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/icon.png">
+</head>
+<body>
+    <main class="glass-widget">
+        <div class="status-bar">
+            <span class="status-bar-time"></span>
+            <div class="status-bar-icons">
+                <i class="mdi mdi-wifi"></i>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <header class="widget-header">
+                <div class="connection-status">
+                    <div class="status-indicator"></div>
+                    <span class="status-text">Connecting...</span>
+                </div>
+                <div class="header-buttons">
+                    <button onclick="refreshFeed()">
+                        <i class="mdi mdi-refresh"></i>
+                    </button>
+                </div>
+            </header>
+
+            <section id="notes"></section>
+        </div>
+
+        <nav class="nav-bar">
+            <div class="nav-item active">
+                <i class="mdi mdi-home"></i>
+                <span>Feed</span>
+            </div>
+            <div class="nav-item profile">
+                <div class="profile-preview">
+                    <img id="nav-profile-img" alt="Profile">
+                </div>
+                <span>Profile</span>
+            </div>
+            <div class="nav-item" onclick="showLoginModal()">
+                <i class="mdi mdi-login"></i>
+                <span>Login</span>
+            </div>
+        </nav>
+
+        <dialog id="login-modal" class="glass-modal">
+            <form method="dialog">
+                <h2>Connect to Nostr</h2>
+                <input 
+                    type="text" 
+                    name="pubkey" 
+                    class="pubkey-input"
+                    placeholder="Enter your npub..."
+                    required
+                >
+                <div class="modal-buttons">
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="primary">Connect</button>
+                </div>
+            </form>
+        </dialog>
+    </main>
+
+    <script src="https://unpkg.com/nostr-tools/lib/nostr.bundle.js"></script>
+    <script src="utils.js"></script>
+    <script src="renderer.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
